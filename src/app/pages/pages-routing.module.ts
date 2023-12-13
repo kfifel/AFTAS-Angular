@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'dashboard' },
   { path: 'dashboard', component: DefaultComponent },
   { path: 'dashboards', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule) },
+  { path: 'competitions', loadChildren: () => import('./competition/competition.module').then(m => m.CompetitionModule) },
 ];
 
 @NgModule({

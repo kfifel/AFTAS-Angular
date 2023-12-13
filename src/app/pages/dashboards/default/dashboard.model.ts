@@ -12,4 +12,9 @@ export interface ChartType {
     labels?: any;
 }
 
-
+export interface ChatMessage {
+  align?: string;
+  name?: string;
+  message: string;
+  time: string;
+}
