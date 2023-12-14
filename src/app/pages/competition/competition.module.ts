@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import { UpdateCompetitionComponent } from './update-competition/update-competition.component';
 import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 import { DetailCompetitionComponent } from './detail-competition/detail-competition.component';
+import {CarouselModule} from "ngx-owl-carousel-o";
 
 @NgModule({
   declarations: [ CompetitionListComponent, UpdateCompetitionComponent, DetailCompetitionComponent ],
@@ -19,6 +20,7 @@ import { DetailCompetitionComponent } from './detail-competition/detail-competit
     UIModule,
     FormsModule,
     NgbDropdownModule,
+    CarouselModule,
   ]
 })
 export class CompetitionModule {}

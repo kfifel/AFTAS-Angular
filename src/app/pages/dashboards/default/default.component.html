@@ -887,7 +887,24 @@
 
         <div class="p-3 chat-input-section">
 
+          <div class="d-flex flex-wrap">
+            <h5 class="card-title mb-3 me-2">Subscribes</h5>
 
+            <div class="dropdown ms-auto" ngbDropdown>
+              <a class="text-muted dropdown-toggle font-size-16" ngbDropdownToggle role="button"
+                 data-toggle="dropdown" aria-haspopup="true">
+                <i class="mdi mdi-dots-horizontal"></i>
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                <a ngbDropdownItem href="javascript: void(0);">Action</a>
+                <a ngbDropdownItem href="javascript: void(0);">Another action</a>
+                <a ngbDropdownItem href="javascript: void(0);">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a ngbDropdownItem href="javascript: void(0);">Separated link</a>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
