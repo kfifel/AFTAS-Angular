@@ -9,7 +9,7 @@
           <div class="">
             <button class="btn btn-primary btn-rounded"
                 routerLink="new"
-            >Add Competition</button>
+            ><i class="mdi mdi-plus"></i> Add Competition</button>
           </div>
 
           <div class="row mb-md-2  my-2">
@@ -42,6 +42,7 @@
                   <th>end time</th>
                   <th>location</th>
                   <th>amount</th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,6 +53,20 @@
                     <td>{{ competition.endTime }}</td>
                     <td>{{ competition.location }}</td>
                     <td>{{ competition.amount | currency: " MAD " }}</td>
+                    <td class="d-flex gap-2">
+                      <button type="button" [routerLink]="['/competitions', competition.code, 'detail']" class="btn btn-info d-flex">
+                        <i class="mdi mdi-eye font-size-8"></i> View
+                      </button>
+
+                      <button type="button" routerLink="/competitions" class="btn btn-danger d-flex">
+                        <i class="mdi mdi-trash-can font-size-8"></i> Delete
+                      </button>
+
+                      <button type="button" routerLink="/competitions" class="btn btn-success d-flex">
+                        <i class="mdi mdi-pencil font-size-8"></i> Edit
+                      </button>
+
+                    </td>
                   </tr>
                 </tbody>
               </table>

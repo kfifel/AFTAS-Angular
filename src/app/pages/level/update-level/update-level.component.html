@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <app-page-title title="Levels" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+    <div class="card">
+      <div class="card-body d-flex justify-content-center">
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Add New Level</h4>
+
+              <form (ngSubmit)="save()">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="description-input">Description</label>
+                      <input type="text" [(ngModel)] = "level.description" name="location" class="form-control" id="description-input">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="point-inputZip">Point</label>
+                      <input type="number"  [(ngModel)] = "level.point" name="amount" class="form-control" id="point-inputZip">
+                    </div>
+                  </div>
+
+                <div>
+                  <button type="submit" class="btn btn-primary w-md">
+                    <i class="fa fa-spinner fa-spin ml-2" *ngIf="isLoading" aria-hidden="true"></i>
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,13 +39,9 @@ export const MENU: MenuItem[] = [
     },
     {
         id: 11,
-        label: 'MENUITEMS.FILEMANAGER.TEXT',
-        icon: 'bx-file',
-        link: '/',
-        badge: {
-            variant: 'success',
-            text: 'MENUITEMS.FILEMANAGER.BADGE',
-        },
+        label: 'MENUITEMS.LEVEL.TEXT',
+        icon: 'bx-sort-up',
+        link: '/levels'
     },
 ];
 

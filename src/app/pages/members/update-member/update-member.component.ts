@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import {SweetAlertService} from "../../../shared/ui/sweet-alert/sweet-alert.service";
 
 @Component({
-  selector: 'app-update-member',
+  selector: 'app-update-level',
   templateUrl: './update-member.component.html',
   styleUrls: ['./update-member.component.scss']
 })

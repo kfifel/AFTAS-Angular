@@ -23,4 +23,8 @@ export class CompetitionService {
   create(competition: ICompetition): Observable<ICompetition> {
     return this.http.post<ICompetition>(this.baseUrl, competition);
   }
+
+  findById(id: string) {
+    return this.http.get<ICompetition>(this.baseUrl + '/' + id);
+  }
 }

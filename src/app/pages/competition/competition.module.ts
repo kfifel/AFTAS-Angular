@@ -7,15 +7,18 @@ import {CommonModule} from "@angular/common";
 import {UIModule} from "../../shared/ui/ui.module";
 import {FormsModule} from "@angular/forms";
 import { UpdateCompetitionComponent } from './update-competition/update-competition.component';
+import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
+import { DetailCompetitionComponent } from './detail-competition/detail-competition.component';
 
 @NgModule({
-  declarations: [ CompetitionListComponent, UpdateCompetitionComponent ],
+  declarations: [ CompetitionListComponent, UpdateCompetitionComponent, DetailCompetitionComponent ],
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
     CommonModule,
     UIModule,
-    FormsModule
+    FormsModule,
+    NgbDropdownModule,
   ]
 })
 export class CompetitionModule {}

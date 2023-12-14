@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <app-page-title title="Levels" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center my-2">
+          <h2 class="card-title">Level(<span class="text-info"> {{ levels?.length || 0 }} </span>)</h2>
+        </div>
+
+        <div class="row mb-md-2  my-2">
+          <div class="col-sm-12 col-md-6">
+            <button class="btn btn-primary btn-rounded"
+                    routerLink="new"
+            >Add Level</button>
+          </div>
+          <!-- Search -->
+          <div class="col-sm-12 col-md-6">
+            <div id="tickets-table_filter" class="dataTables_filter text-md-end"><label
+              class="d-inline-flex align-items-center">Search:
+              <input type="text" name="searchTerm" class="form-control form-control-sm ms-2"
+                     aria-controls="tickets-table" [(ngModel)]="query"></label></div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <thead class="thead-dark">
+              <tr>
+                <th>Level</th>
+                <th>point</th>
+                <th>description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let level of levels">
+                <th scope="row">LEVEL: {{ level.code }}</th>
+                <th>{{ level.point }}</th>
+                <td>{{ level.description.substring(0, 100) }}</td>=
+              </tr>
+              </tbody>
+            </table>
+            <div class="row justify-content-md-between align-items-md-center mt-2">
+              <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">Showing
+                  {{1}} to
+                  {{ pagination.totalElements}} of {{pagination.totalElements}}
+                  entries
+                </div>
+              </div>
+              <!-- Pagination -->
+              <div class="col-sm-12 col-md-5">
+                <div class="text-md-right float-md-end pagination-rounded">
+                  <ngb-pagination [collectionSize]="pagination.totalPages" [(page)]="pagination.pageNumber" [pageSize]="pagination.pageSize">
+                  </ngb-pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

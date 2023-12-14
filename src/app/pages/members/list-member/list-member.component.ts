@@ -6,7 +6,7 @@ import {IMember} from "../member.model";
 import {SweetAlertService} from "../../../shared/ui/sweet-alert/sweet-alert.service";
 
 @Component({
-  selector: 'app-list-member',
+  selector: 'app-list-level',
   templateUrl: './list-member.component.html',
   styleUrls: ['./list-member.component.scss']
 })
