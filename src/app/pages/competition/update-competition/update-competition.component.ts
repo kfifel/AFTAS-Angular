@@ -44,6 +44,4 @@ export class UpdateCompetitionComponent implements OnInit {
         }
       );
   }
-
-  protected readonly onmessage = onmessage;
 }

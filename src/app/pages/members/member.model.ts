@@ -22,7 +22,7 @@ export class Member implements IMember {
   }
 }
 
-enum IdentityDocumentType {
+export enum IdentityDocumentType {
   IDENTITY_CARD = "IDENTITY_CARD",
   PASSPORT = "PASSPORT",
   RESIDENCE_CARD = "RESIDENCE_CARD",

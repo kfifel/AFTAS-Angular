@@ -3,6 +3,7 @@ import {PaginationModel} from "../../../core/models/pagination.model";
 import {MemberService} from "../service/service.service";
 import {PaginatedResponse} from "../../../core/models/paginated.response.model";
 import {IMember} from "../member.model";
+import {SweetAlertService} from "../../../shared/ui/sweet-alert/sweet-alert.service";
 
 @Component({
   selector: 'app-list-member',
@@ -23,7 +24,6 @@ export class ListMemberComponent implements OnInit {
 
   onSuccess(result: PaginatedResponse<IMember>) {
     this.members = result.content;
-    console.log(result)
     this.pagination.pageSize = result.pageSize;
     this.pagination.pageNumber = result.pageNumber;
     this.pagination.totalElements = result.totalElements;
