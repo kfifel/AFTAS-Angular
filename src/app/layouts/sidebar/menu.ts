@@ -32,9 +32,9 @@ export const MENU: MenuItem[] = [
     },
     {
         id: 10,
-        label: 'MENUITEMS.CHAT.TEXT',
-        icon: 'bx-chat',
-        link: '/',
+        label: 'MENUITEMS.MEMBER.TEXT',
+        icon: 'bx-user',
+        link: '/members',
 
     },
     {

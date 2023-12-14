@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UIModule } from './ui/ui.module';
 
 import { WidgetModule } from './widget/widget.module';
+import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [],
@@ -12,6 +13,7 @@ import { WidgetModule } from './widget/widget.module';
     UIModule,
     WidgetModule
   ],
+  exports: [ NgbPaginationModule ]
 })
 
 export class SharedModule { }

@@ -1,29 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import {CompetitionService} from "../service/service.service";
-import {ICompetition} from "../competition.model";
-import {HttpClient} from "@angular/common/http";
 import {PaginationModel} from "../../../core/models/pagination.model";
-import {query} from "chartist";
+import {MemberService} from "../service/service.service";
 import {PaginatedResponse} from "../../../core/models/paginated.response.model";
+import {IMember} from "../member.model";
 
 @Component({
-  selector: 'app-competition',
-  templateUrl: './competition-list.component.html',
-  styleUrls: ['./competition-list.component.scss']
+  selector: 'app-list-member',
+  templateUrl: './list-member.component.html',
+  styleUrls: ['./list-member.component.scss']
 })
-export class CompetitionListComponent implements OnInit {
-  competitions: ICompetition[];
-  breadCrumbItems: Array<{}> =  [{ label: 'Competitions' }, { label: 'Overview', active: true }];
+export class ListMemberComponent implements OnInit {
+
+  members: IMember[];
+  breadCrumbItems: Array<{}> =  [{ label: 'Members' }, { label: 'Overview', active: true }];
   pagination: PaginationModel = new PaginationModel(0, 10, 0, 0);
   query: string;
-  constructor(private competitionService: CompetitionService) { }
+  constructor(private memberService: MemberService) { }
 
   ngOnInit(): void {
     this.loadAll(1);
   }
 
-  onSuccess(result: PaginatedResponse<ICompetition>) {
-    this.competitions = result.content;
+  onSuccess(result: PaginatedResponse<IMember>) {
+    this.members = result.content;
     console.log(result)
     this.pagination.pageSize = result.pageSize;
     this.pagination.pageNumber = result.pageNumber;
@@ -32,7 +31,7 @@ export class CompetitionListComponent implements OnInit {
   }
 
   private loadAll(page: number) {
-    this.competitionService.findAllCompetition().subscribe({
+    this.memberService.findAllMember().subscribe({
       next: (res) => {
         this.onSuccess(res)
       },

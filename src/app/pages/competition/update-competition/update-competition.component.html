@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <app-page-title title="Competitions" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+    <div class="card">
+      <div class="card-body d-flex justify-content-center">
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Add New Competition</h4>
+
+              <form (ngSubmit)="save()">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="location-input">Location</label>
+                      <input type="text" [(ngModel)] = "competition.location" name="location" class="form-control" id="location-input">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="amount-inputZip">Amount</label>
+                      <input type="number"  [(ngModel)] = "competition.amount" name="amount" class="form-control" id="amount-inputZip">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-lg-4">
+                    <div class="mb-3">
+                      <label for="Date-input">Date of competition</label>
+                      <input type="date"  [(ngModel)] = "competition.date"  name="date" class="form-control" id="Date-input" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="mb-3">
+                      <label for="start-time-inputCity">Start Time</label>
+                      <input type="time"  [(ngModel)] = "competition.startTime" name="startTime" class="form-control" id="start-time-inputCity">
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="mb-3">
+                      <label for="end-time-inputState">End Time</label>
+                      <input type="time"  [(ngModel)] = "competition.endTime"  name="endTime" id="end-time-inputState" class="form-control"/>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div>
+                  <button type="submit" class="btn btn-primary w-md">
+                    <i class="fa fa-spinner fa-spin ml-2" *ngIf="isLoading" aria-hidden="true"></i>
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,24 +3,24 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {PaginatedResponse} from "../../../core/models/paginated.response.model";
-import {ICompetition} from "../competition.model";
+import {IMember} from "../member.model";
 import {createRequestOption} from "../../../core/request/request.util";
 import {Pagination} from "../../../core/request/request.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompetitionService {
+export class MemberService {
 
-  private baseUrl: string = environment.baseUrl + "/api/v1/competitions";
+  private baseUrl: string = environment.baseUrl + "/api/v1/members";
   constructor(private http: HttpClient) { }
 
-  findAllCompetition(req?: Pagination): Observable<PaginatedResponse<ICompetition>> {
+  findAllMember(req?: Pagination): Observable<PaginatedResponse<IMember>> {
     const options = createRequestOption(req);
-    return this.http.get<PaginatedResponse<ICompetition>>(this.baseUrl, {params: options});
+    return this.http.get<PaginatedResponse<IMember>>(this.baseUrl, {params: options});
   }
 
-  create(competition: ICompetition): Observable<ICompetition> {
-    return this.http.post<ICompetition>(this.baseUrl, competition);
+  create(member: IMember): Observable<IMember> {
+    return this.http.post<IMember>(this.baseUrl, member);
   }
 }

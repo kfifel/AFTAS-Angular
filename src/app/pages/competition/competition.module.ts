@@ -4,13 +4,18 @@ import {RouterModule} from "@angular/router";
 import {routes} from "./routes/competition.route";
 import {SharedModule} from "../../shared/shared.module";
 import {CommonModule} from "@angular/common";
+import {UIModule} from "../../shared/ui/ui.module";
+import {FormsModule} from "@angular/forms";
+import { UpdateCompetitionComponent } from './update-competition/update-competition.component';
 
 @NgModule({
-  declarations: [ CompetitionListComponent ],
+  declarations: [ CompetitionListComponent, UpdateCompetitionComponent ],
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    UIModule,
+    FormsModule
   ]
 })
 export class CompetitionModule {}

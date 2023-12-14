@@ -1,6 +1,79 @@
-<p>competition works!</p>
+<div class="container-fluid">
+  <app-page-title title="Competitions" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center my-2">
+            <h2 class="card-title">Competition(<span class="text-info"> {{ competitions?.length }} </span>)</h2>
+          </div>
+          <div class="">
+            <button class="btn btn-primary btn-rounded"
+                routerLink="new"
+            >Add Competition</button>
+          </div>
 
+          <div class="row mb-md-2  my-2">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="tickets-table_length"><label
+                class="d-inline-flex align-items-center">Show
+                <select aria-controls="tickets-table" name="pageSize"
+                        [(ngModel)]="pagination.pageSize" class="form-control form-control-sm mx-2">
+                  <option [ngValue]="10">10</option>
+                  <option [ngValue]="25">25</option>
+                  <option [ngValue]="50">50</option>
+                  <option [ngValue]="100">100</option>
+                </select> entries</label></div>
+            </div>
+            <!-- Search -->
+            <div class="col-sm-12 col-md-6">
+              <div id="tickets-table_filter" class="dataTables_filter text-md-end"><label
+                class="d-inline-flex align-items-center">Search:
+                <input type="text" name="searchTerm" class="form-control form-control-sm ms-2"
+                       aria-controls="tickets-table" [(ngModel)]="query"></label></div>
+            </div>
 
-<div *ngIf="let competition of competitions">
-    {{ competition }}
+          <div class="table-responsive">
+              <table class="table mb-0">
+                <thead class="thead-dark">
+                <tr>
+                  <th>Code</th>
+                  <th>Date</th>
+                  <th>Start time</th>
+                  <th>end time</th>
+                  <th>location</th>
+                  <th>amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let competition of competitions">
+                    <th scope="row">{{ competition.code }}</th>
+                    <td>{{ competition.date | date: "dd-MM-yyyy" }}</td>
+                    <td>{{ competition.startTime }}</td>
+                    <td>{{ competition.endTime }}</td>
+                    <td>{{ competition.location }}</td>
+                    <td>{{ competition.amount | currency: " MAD " }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            <div class="row justify-content-md-between align-items-md-center mt-2">
+              <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">Showing
+                  {{1}} to
+                  {{ pagination.totalElements}} of {{pagination.totalElements}}
+                  entries
+                </div>
+              </div>
+              <!-- Pagination -->
+              <div class="col-sm-12 col-md-5">
+                <div class="text-md-right float-md-end pagination-rounded">
+                  <ngb-pagination [collectionSize]="pagination.totalPages" [(page)]="pagination.pageNumber" [pageSize]="pagination.pageSize">
+                  </ngb-pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
