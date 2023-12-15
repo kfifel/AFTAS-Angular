@@ -34,7 +34,7 @@
                   </div>
 
                   <div class="mt-3 px-3">
-                    <p>it will start at {{ combineDateWithTime(competition?.date, competition?.endTime) | date : "dd/MM/yyyy hh:mm:ss"}}</p>
+                    <p>it will end at {{ combineDateWithTime(competition?.date, competition?.endTime) | date : "dd/MM/yyyy HH:mm:ss"}}</p>
                   </div>
                 </div>
               </div>
@@ -109,11 +109,12 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex justify-content-between m-2 ">
-                    <div class="card">
-                      <p class="fw-bold mb-4">Subscriptions({{competition?.members?.length || 0}})</p>
-                    </div>
+                      <h4 class="fw-bold mb-4">Subscriptions({{competition?.members?.length || 0}})</h4>
 
-                    <button class="btn btn-primary p-1 " (click)="openModal(newSubscriptions)">add new subscription</button>
+                      <button class="btn btn-success btn-sm" (click)="openModal(newSubscriptions)">
+                        <i class="fas fa-plus-circle me-2"></i>
+                        new subscription
+                      </button>
                   </div>
                   <div class="table-responsive">
                     <table class="table table-nowrap table-centered mb-0" *ngIf="competition?.members?.length > 0; else contentVide">
@@ -154,17 +155,58 @@
             </ng-template>
           </li>
           <li [ngbNavItem]="3">
-            <a ngbNavLink>
+            <a ngbNavLink (click)="calculateRanks()">
               <i class="fas fa-medal d-block check-nav-icon mt-4 mb-2"></i>
               <p class="fw-bold mb-4">Ranking</p>
             </a>
             <ng-template ngbNavContent>
               <div class="card">
                 <div class="card-body">
+                  <!-- Display Top 3 Podium with Buttons -->
+                  <div *ngIf="competition?.ranks && ranks.length > 0" class="mt-4">
+                    <h5 class="font-size-15 mb-3">Top 3 <i class="fas fa-trophy text-warning"></i></h5>
+                    <div class="row text-center">
+                      <!-- Gold Button -->
+                      <div *ngFor="let topRank of ranks.slice(0, 3)" class="col-md-4">
+                        <div class="d-flex flex-column justify-content-center">
+                          <i class="fas fa-trophy h1"
+                             [class]="topRank?.rank == 1? 'text-warning'
+                              : topRank?.rank == 2? 'text-secondary' : 'text-bronze'"
+                          ></i>
+                          {{ topRank?.rank }}
+                        </div>
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ topRank?.member?.name + ' ' + topRank?.member?.familyName }}</h5>
+                            <p class="card-text">Points: <i class="fas fa-star text-warning"></i> {{ topRank?.score }}</p>
+                          </div>
+                        </div>
+                      </div>
 
-                  <button disabled class="btn btn-secondary">
-                    <i class="fa fa-spinner d-block check-nav-icon mb-2"></i>
-                  </button>
+                    </div>
+                  </div>
+
+                  <div *ngIf="ranks && ranks.length > 3" class="mt-4">
+                    <h5 class="font-size-15 mb-3">Other Ranks</h5>
+                    <div class="table-responsive">
+                      <table class="table table-nowrap table-centered mb-0">
+                        <thead>
+                        <tr>
+                          <th scope="col">Rank</th>
+                          <th scope="col">Member</th>
+                          <th scope="col">Points</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let otherRank of ranks.slice(3)">
+                          <td>{{ otherRank.rank }}</td>
+                          <td>{{ otherRank.member?.name + ' ' + otherRank.member?.familyName }}</td>
+                          <td>{{ otherRank.score }}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
 
                 </div>
               </div>

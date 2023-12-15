@@ -9,7 +9,8 @@ class RankId {
 export interface IRank {
   id?: RankId;
   rank?: number;
-  point?: number;
+  score?: number;
+  member?: IMember;
 }
 
 

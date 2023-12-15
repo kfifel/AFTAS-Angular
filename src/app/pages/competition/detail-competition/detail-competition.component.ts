@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CompetitionService} from "../service/service.service";
 import {SweetAlertService} from "../../../shared/ui/sweet-alert/sweet-alert.service";
-import {FishHunting, ICompetition} from "../competition.model";
+import {FishHunting, ICompetition, IRank} from "../competition.model";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {Time} from "@angular/common";
 import {IMember} from "../../members/member.model";
@@ -42,6 +42,8 @@ export class DetailCompetitionComponent implements OnInit {
       },
     }
   }
+  isLoading: boolean = false
+  ranks: IRank[] = [];
   constructor(private route: ActivatedRoute,
               private competitionService: CompetitionService,
               private fishService: FishService,
@@ -173,5 +175,20 @@ export class DetailCompetitionComponent implements OnInit {
             this.sweetAlertService.error("Error to create new subscription", error.error.message)
         }
         );
+  }
+
+  calculateRanks() {
+    this.isLoading = true;
+    this.competitionService.calculateRanks(this.competition.code).subscribe({
+        next: (res) => {
+            this.isLoading = false;
+            this.sweetAlertService.success("Success", "Ranks Calculated");
+            this.ranks = res;
+        },
+        error: (error) => {
+            this.isLoading = false;
+            this.sweetAlertService.error("Error to calculate ranks", error.error.message)
+        }
+    });
   }
 }
