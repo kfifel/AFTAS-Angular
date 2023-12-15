@@ -7,13 +7,15 @@ import {CommonModule} from "@angular/common";
 import {UIModule} from "../../shared/ui/ui.module";
 import {FormsModule} from "@angular/forms";
 import { UpdateCompetitionComponent } from './update-competition/update-competition.component';
-import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDropdownModule, NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
 import { DetailCompetitionComponent } from './detail-competition/detail-competition.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [ CompetitionListComponent, UpdateCompetitionComponent, DetailCompetitionComponent ],
   imports: [
+    CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
     CommonModule,
@@ -21,6 +23,8 @@ import {CarouselModule} from "ngx-owl-carousel-o";
     FormsModule,
     NgbDropdownModule,
     CarouselModule,
+    NgbNavModule,
+    NgSelectModule
   ]
 })
 export class CompetitionModule {}

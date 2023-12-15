@@ -1,4 +1,5 @@
 import {Time} from "@angular/common";
+import {IMember} from "../members/member.model";
 
 class RankId {
   memberId?: number;
@@ -17,6 +18,13 @@ class IHunting {
   numberOfFish?: number;
 }
 
+export class FishHunting {
+  fishWeight?: number;
+  fishName?: string;
+  memberId?: number;
+  competitionCode?: string;
+}
+
 export interface ICompetition {
   code?: string;
   numberOfParticipant?: number;
@@ -27,4 +35,5 @@ export interface ICompetition {
   amount?: number;
   ranks?: IRank[];
   hunting?: IHunting[];
+  members?: IMember[];
 }

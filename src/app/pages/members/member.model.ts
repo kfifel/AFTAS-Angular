@@ -7,6 +7,7 @@ export interface IMember {
   nationality?: string;
   identityDocumentType?: IdentityDocumentType;
   identityNumber?: string;
+  nbrHunting?: number;
 }
 
 export class Member implements IMember {
@@ -17,7 +18,8 @@ export class Member implements IMember {
     public ascensionDate?: Date,
     public nationality?: string,
     public identityDocumentType?: IdentityDocumentType,
-    public identityNumber?: string
+    public identityNumber?: string,
+    public nbrHunting?: number,
   ) {
   }
 }

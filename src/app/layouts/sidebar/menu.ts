@@ -43,5 +43,11 @@ export const MENU: MenuItem[] = [
         icon: 'bx-sort-up',
         link: '/levels'
     },
+    {
+        id: 11,
+        label: 'MENUITEMS.FISH.TEXT',
+        icon: 'bx-anchor',
+        link: '/levels'
+    },
 ];
 

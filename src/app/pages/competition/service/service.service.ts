@@ -3,9 +3,10 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {PaginatedResponse} from "../../../core/models/paginated.response.model";
-import {ICompetition} from "../competition.model";
+import {FishHunting, ICompetition} from "../competition.model";
 import {createRequestOption} from "../../../core/request/request.util";
 import {Pagination} from "../../../core/request/request.model";
+import {IMember} from "../../members/member.model";
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,13 @@ export class CompetitionService {
 
   findById(id: string) {
     return this.http.get<ICompetition>(this.baseUrl + '/' + id);
+  }
+
+  loadMemberRelationShip(id: String): Observable<IMember[]> {
+    return this.http.get<IMember[]>(this.baseUrl + '/' + id + '/members');
+  }
+
+  saveFishHunting(fishHunting: FishHunting) {
+    return this.http.post(`${this.baseUrl}/${fishHunting.competitionCode}/hunting`, fishHunting);
   }
 }
