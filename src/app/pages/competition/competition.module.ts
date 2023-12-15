@@ -7,24 +7,25 @@ import {CommonModule} from "@angular/common";
 import {UIModule} from "../../shared/ui/ui.module";
 import {FormsModule} from "@angular/forms";
 import { UpdateCompetitionComponent } from './update-competition/update-competition.component';
-import {NgbDropdownModule, NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAlertModule, NgbDropdownModule, NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
 import { DetailCompetitionComponent } from './detail-competition/detail-competition.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [ CompetitionListComponent, UpdateCompetitionComponent, DetailCompetitionComponent ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule.forChild(routes),
-    CommonModule,
-    UIModule,
-    FormsModule,
-    NgbDropdownModule,
-    CarouselModule,
-    NgbNavModule,
-    NgSelectModule
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule.forChild(routes),
+        CommonModule,
+        UIModule,
+        FormsModule,
+        NgbDropdownModule,
+        CarouselModule,
+        NgbNavModule,
+        NgSelectModule,
+        NgbAlertModule
+    ]
 })
 export class CompetitionModule {}

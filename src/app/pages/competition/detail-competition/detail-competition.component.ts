@@ -9,6 +9,7 @@ import {IMember} from "../../members/member.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {IFish} from "../../fish/fish.model";
 import {FishService} from "../../fish/service/service.service";
+import {MemberService} from "../../members/service/service.service";
 
 @Component({
   selector: 'app-detail-competition',
@@ -24,6 +25,8 @@ export class DetailCompetitionComponent implements OnInit {
     memberId: null,
     competitionCode: ''
   };
+  memberIdToSubscribe: number | null = null;
+  members: IMember[] = [];
   fishes: IFish[] = [];
   breadCrumbItems: Array<{}> =  [{ label: 'Competitions' }, { label: 'Detail', active: true }];
   timelineCarousel: OwlOptions = {
@@ -43,6 +46,7 @@ export class DetailCompetitionComponent implements OnInit {
               private competitionService: CompetitionService,
               private fishService: FishService,
               private sweetAlertService: SweetAlertService,
+              private memberService: MemberService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -60,10 +64,11 @@ export class DetailCompetitionComponent implements OnInit {
     )
   }
 
-  combineDateWithTime(date: Date | undefined, startTime: Time | undefined) {
-    if(date == undefined || startTime == undefined) return undefined;
+  combineDateWithTime(date: Date | undefined, time: Time | undefined) {
+    if(date == undefined || time == undefined) return undefined;
     let dateStr = date.toString();
-    let timeStr = startTime.toString();
+    let timeStr = time.toString();
+
     return new Date(`${dateStr.substring(0, 10)}T${timeStr}`);
   }
 
@@ -78,16 +83,32 @@ export class DetailCompetitionComponent implements OnInit {
     );
   }
 
+  loadMembers() {
+    if(this.members.length == 0)
+      this.memberService.findAllMember().subscribe(
+        (res ) => {
+          this.members = res.content;
+        },
+        (error) => {
+          this.sweetAlertService.error("Error to load members ", error.error.message)
+        }
+      );
+  }
+
 
   /**
    * Open modal
    * @param content modal content
    * @param memberId
    */
-  openModal(content: any, memberId: number) {
-    this.loadFishes();
-    this.fishHunting.competitionCode = this.competition.code;
-    this.fishHunting.memberId = memberId;
+  openModal(content: any, memberId?: number) {
+    if(memberId != undefined) {
+      this.loadFishes();
+      this.fishHunting.competitionCode = this.competition.code;
+      this.fishHunting.memberId = memberId;
+    }else {
+        this.loadMembers();
+    }
     this.modalService.open(content, { centered: true });
   }
 
@@ -134,5 +155,23 @@ export class DetailCompetitionComponent implements OnInit {
       memberId: null,
       competitionCode: ''
     };
+  }
+
+  createNewSubscription() {
+    let memberId = this.memberIdToSubscribe;
+    let competitionCode = this.competition.code;
+
+    this.competitionService.createNewSubscription(memberId, competitionCode).subscribe(
+        (res) => {
+          if(this.competition.members == undefined) this.competition.members = [];
+          let saved = this.members.filter(member => member.number == memberId)[0];
+          saved.nbrHunting = 0;
+          this.competition.members.push(saved);
+          this.modalService.dismissAll('Save click');
+        },
+        (error) => {
+            this.sweetAlertService.error("Error to create new subscription", error.error.message)
+        }
+        );
   }
 }

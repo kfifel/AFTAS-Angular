@@ -36,4 +36,8 @@ export class CompetitionService {
   saveFishHunting(fishHunting: FishHunting) {
     return this.http.post(`${this.baseUrl}/${fishHunting.competitionCode}/hunting`, fishHunting);
   }
+
+  createNewSubscription(memberId: number, competitionCode: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/${competitionCode}/registrations`, {memberId: memberId});
+  }
 }
