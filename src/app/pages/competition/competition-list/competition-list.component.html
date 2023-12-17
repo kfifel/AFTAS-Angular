@@ -29,10 +29,14 @@
               </div>
 
               <div class="">
-                <form class="app-search d-none d-xl-block">
+                <form class="app-search d-flex" (ngSubmit)="searchCompetition()">
                   <div class="position-relative">
-                    <input type="text" name="search" class="form-control" (keyup)="searchCompetition()" [(ngModel)]="query" placeholder="{{'HEADER.SEARCH' | translate}}">
+                    <input type="text" name="search" class="form-control" [(ngModel)]="query" placeholder="{{'HEADER.SEARCH' | translate}}">
                     <span class="bx bx-search-alt"></span>
+                  </div>
+
+                  <div>
+                    <button type="submit" class="form-control">search</button>
                   </div>
                 </form>
               </div>

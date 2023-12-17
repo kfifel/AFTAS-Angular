@@ -18,7 +18,7 @@ export class CompetitionListComponent implements OnInit {
   constructor(private competitionService: CompetitionService) { }
 
   ngOnInit(): void {
-    this.loadAll(1);
+    this.loadAll();
   }
 
   onSuccess(result: PaginatedResponse<ICompetition>) {
@@ -30,7 +30,7 @@ export class CompetitionListComponent implements OnInit {
     this.pagination.totalPages = result.totalPages;
   }
 
-  private loadAll(page: number) {
+  private loadAll() {
     this.competitionService.findAllCompetition().subscribe({
       next: (res) => {
         this.onSuccess(res)
@@ -42,7 +42,7 @@ export class CompetitionListComponent implements OnInit {
   }
 
   searchCompetition() {
-    let pagination = new SearchWithPagination(this.pagination.pageNumber, this.pagination.pageSize, [], this.query);
+    let pagination = new SearchWithPagination(0, this.pagination.pageSize, [], this.query);
     this.competitionService.findAllCompetition(pagination).subscribe({
       next: (res) => {
         this.onSuccess(res)
