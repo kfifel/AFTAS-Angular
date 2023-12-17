@@ -5,7 +5,7 @@ import {environment} from "../../../../environments/environment";
 import {PaginatedResponse} from "../../../core/models/paginated.response.model";
 import {IMember} from "../member.model";
 import {createRequestOption} from "../../../core/request/request.util";
-import {Pagination} from "../../../core/request/request.model";
+import {IPagination} from "../../../core/request/request.model";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class MemberService {
   private baseUrl: string = environment.baseUrl + "/api/v1/members";
   constructor(private http: HttpClient) { }
 
-  findAllMember(req?: Pagination): Observable<PaginatedResponse<IMember>> {
+  findAllMember(req?: IPagination): Observable<PaginatedResponse<IMember>> {
     const options = createRequestOption(req);
     return this.http.get<PaginatedResponse<IMember>>(this.baseUrl, {params: options});
   }

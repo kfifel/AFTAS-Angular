@@ -102,6 +102,10 @@
       "TEXT": "Level",
       "BADGE": "New"
     },
+    "FISH": {
+      "TEXT": "Fish",
+      "BADGE": "New"
+    },
     "ECOMMERCE": {
       "TEXT": "Ecommerce",
       "LIST": {

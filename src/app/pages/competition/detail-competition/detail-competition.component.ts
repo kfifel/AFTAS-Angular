@@ -28,7 +28,7 @@ export class DetailCompetitionComponent implements OnInit {
   memberIdToSubscribe: number | null = null;
   members: IMember[] = [];
   fishes: IFish[] = [];
-  breadCrumbItems: Array<{}> =  [{ label: 'Competitions' }, { label: 'Detail', active: true }];
+  breadCrumbItems: Array<{}> =  [{ label: 'Competitions', link: "/competitions" }, { label: 'Detail', active: true }];
   timelineCarousel: OwlOptions = {
     items: 1,
     loop: false,
@@ -54,7 +54,7 @@ export class DetailCompetitionComponent implements OnInit {
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
     this.competitionService.findById(id).subscribe(
-      (competition) => {
+      (competition: ICompetition) => {
         this.competition = competition;
       },
       (error) => {
@@ -182,7 +182,6 @@ export class DetailCompetitionComponent implements OnInit {
     this.competitionService.calculateRanks(this.competition.code).subscribe({
         next: (res) => {
             this.isLoading = false;
-            this.sweetAlertService.success("Success", "Ranks Calculated");
             this.ranks = res;
         },
         error: (error) => {
@@ -190,5 +189,15 @@ export class DetailCompetitionComponent implements OnInit {
             this.sweetAlertService.error("Error to calculate ranks", error.error.message)
         }
     });
+  }
+
+  protected readonly Number = Number;
+
+  getCompetitionDuration(startTime: Time, endTime: Time): string {
+    if(startTime == undefined || endTime == undefined) return '';
+    let start = startTime.toString().split(':');
+    let end = endTime.toString().split(':');
+    let duration = Number(end[0]) - Number(start[0]);
+    return `${duration}`;
   }
 }

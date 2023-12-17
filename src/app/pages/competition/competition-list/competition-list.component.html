@@ -7,29 +7,35 @@
             <h2 class="card-title">Competition(<span class="text-info"> {{ competitions?.length }} </span>)</h2>
           </div>
           <div class="">
-            <button class="btn btn-primary btn-rounded"
-                routerLink="new"
-            ><i class="mdi mdi-plus"></i> Add Competition</button>
+            <button class="btn btn-primary btn-rounded" routerLink="new">
+              <i class="mdi mdi-plus"></i>
+              Add Competition
+            </button>
           </div>
 
-          <div class="row mb-md-2  my-2">
-            <div class="col-sm-12 col-md-6">
-              <div class="dataTables_length" id="tickets-table_length"><label
-                class="d-inline-flex align-items-center">Show
-                <select aria-controls="tickets-table" name="pageSize"
-                        [(ngModel)]="pagination.pageSize" class="form-control form-control-sm mx-2">
-                  <option [ngValue]="10">10</option>
-                  <option [ngValue]="25">25</option>
-                  <option [ngValue]="50">50</option>
-                  <option [ngValue]="100">100</option>
-                </select> entries</label></div>
-            </div>
-            <!-- Search -->
-            <div class="col-sm-12 col-md-6">
-              <div id="tickets-table_filter" class="dataTables_filter text-md-end"><label
-                class="d-inline-flex align-items-center">Search:
-                <input type="text" name="searchTerm" class="form-control form-control-sm ms-2"
-                       aria-controls="tickets-table" [(ngModel)]="query"></label></div>
+          <div class="row mb-md-2 my-2">
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="col-sm-12 col-md-6">
+                <div class="dataTables_length" id="tickets-table_length"><label
+                  class="d-inline-flex align-items-center">Show
+                  <select aria-controls="tickets-table" name="pageSize"
+                          [(ngModel)]="pagination.pageSize" class="form-control form-control-sm mx-2">
+                    <option [ngValue]="10" selected>10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select> entries</label></div>
+              </div>
+
+              <div class="">
+                <form class="app-search d-none d-xl-block">
+                  <div class="position-relative">
+                    <input type="text" name="search" class="form-control" (keyup)="searchCompetition()" [(ngModel)]="query" placeholder="{{'HEADER.SEARCH' | translate}}">
+                    <span class="bx bx-search-alt"></span>
+                  </div>
+                </form>
+              </div>
             </div>
 
           <div class="table-responsive">

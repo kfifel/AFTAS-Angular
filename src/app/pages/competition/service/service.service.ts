@@ -5,7 +5,7 @@ import {environment} from "../../../../environments/environment";
 import {PaginatedResponse} from "../../../core/models/paginated.response.model";
 import {FishHunting, ICompetition, IRank} from "../competition.model";
 import {createRequestOption} from "../../../core/request/request.util";
-import {Pagination} from "../../../core/request/request.model";
+import {IPagination, ISearchWithPagination} from "../../../core/request/request.model";
 import {IMember} from "../../members/member.model";
 
 @Injectable({
@@ -16,8 +16,9 @@ export class CompetitionService {
   private baseUrl: string = environment.baseUrl + "/api/v1/competitions";
   constructor(private http: HttpClient) { }
 
-  findAllCompetition(req?: Pagination): Observable<PaginatedResponse<ICompetition>> {
+  findAllCompetition(req?: IPagination | ISearchWithPagination): Observable<PaginatedResponse<ICompetition>> {
     const options = createRequestOption(req);
+    console.log(options)
     return this.http.get<PaginatedResponse<ICompetition>>(this.baseUrl, {params: options});
   }
 

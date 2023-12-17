@@ -11,6 +11,7 @@ import {NgbAlertModule, NgbDropdownModule, NgbNavModule} from "@ng-bootstrap/ng-
 import { DetailCompetitionComponent } from './detail-competition/detail-competition.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [ CompetitionListComponent, UpdateCompetitionComponent, DetailCompetitionComponent ],
@@ -25,7 +26,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
         CarouselModule,
         NgbNavModule,
         NgSelectModule,
-        NgbAlertModule
+        NgbAlertModule,
+        TranslateModule
     ]
 })
 export class CompetitionModule {}

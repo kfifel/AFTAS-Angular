@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { NgbCollapseModule, NgbDatepickerModule, NgbTimepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { PagetitleComponent } from './pagetitle/pagetitle.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [PagetitleComponent],
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     NgbCollapseModule,
     NgbDatepickerModule,
     NgbTimepickerModule,

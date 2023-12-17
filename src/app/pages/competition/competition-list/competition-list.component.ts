@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {CompetitionService} from "../service/service.service";
 import {ICompetition} from "../competition.model";
-import {HttpClient} from "@angular/common/http";
 import {PaginationModel} from "../../../core/models/pagination.model";
-import {query} from "chartist";
 import {PaginatedResponse} from "../../../core/models/paginated.response.model";
+import {SearchWithPagination} from "../../../core/request/request.model";
 
 @Component({
   selector: 'app-competition',
@@ -13,7 +12,7 @@ import {PaginatedResponse} from "../../../core/models/paginated.response.model";
 })
 export class CompetitionListComponent implements OnInit {
   competitions: ICompetition[];
-  breadCrumbItems: Array<{}> =  [{ label: 'Competitions' }, { label: 'Overview', active: true }];
+  breadCrumbItems: Array<{}> =  [{ label: 'Competitions', link: "/competitions" }, { label: 'Overview', active: true }];
   pagination: PaginationModel = new PaginationModel(0, 10, 0, 0);
   query: string;
   constructor(private competitionService: CompetitionService) { }
@@ -33,6 +32,18 @@ export class CompetitionListComponent implements OnInit {
 
   private loadAll(page: number) {
     this.competitionService.findAllCompetition().subscribe({
+      next: (res) => {
+        this.onSuccess(res)
+      },
+      error: err => {
+        console.error(err)
+      }
+    })
+  }
+
+  searchCompetition() {
+    let pagination = new SearchWithPagination(this.pagination.pageNumber, this.pagination.pageSize, [], this.query);
+    this.competitionService.findAllCompetition(pagination).subscribe({
       next: (res) => {
         this.onSuccess(res)
       },
