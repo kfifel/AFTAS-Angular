@@ -15,6 +15,7 @@ export class CompetitionListComponent implements OnInit {
   breadCrumbItems: Array<{}> =  [{ label: 'Competitions', link: "/competitions" }, { label: 'Overview', active: true }];
   pagination: PaginationModel = new PaginationModel(0, 10, 0, 0);
   query: string;
+  isLoading: boolean = false;
   constructor(private competitionService: CompetitionService) { }
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class CompetitionListComponent implements OnInit {
   }
 
   searchCompetition() {
+    this.isLoading = true;
     let pagination = new SearchWithPagination(0, this.pagination.pageSize, [], this.query);
     this.competitionService.findAllCompetition(pagination).subscribe({
       next: (res) => {
@@ -49,6 +51,9 @@ export class CompetitionListComponent implements OnInit {
       },
       error: err => {
         console.error(err)
+      },
+      complete: () => {
+        this.isLoading = false;
       }
     })
   }

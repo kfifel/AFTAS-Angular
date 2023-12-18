@@ -53,7 +53,7 @@
           <li [ngbNavItem]="1">
             <a ngbNavLink>
               <i class="fas fa-info-circle d-block check-nav-icon mt-4 mb-2"></i>
-              <p class="fw-bold mb-4">Shipping Info</p>
+              <p class="fw-bold mb-4">Competition Details</p>
             </a>
             <ng-template ngbNavContent>
               <div class="card">
@@ -121,7 +121,7 @@
                       <h5>What to Expect:</h5>
                       <ul class="list-unstyled mb-4">
                         <li><i class="mdi mdi-trophy text-primary me-2"></i> Catch of the Day: Compete in Fish categories, vying for the biggest catch and the coveted title of AFTAS. </li>
-                        <li><i class="mdi mdi-fishing-rod text-primary me-2"></i> Fishing Frenzy: Enjoy <b>{{ getCompetitionDuration(competition.startTime, competition.endTime) }}</b> hours of non-stop fishing action, surrounded by breathtaking scenery and friendly competition.</li>
+                        <li><i class="mdi mdi-fishing-rod text-primary me-2"></i> Fishing Frenzy: Enjoy <b>{{ getCompetitionDuration(competition?.startTime, competition?.endTime) }}</b> hours of non-stop fishing action, surrounded by breathtaking scenery and friendly competition.</li>
                         <li><i class="mdi mdi-gift text-primary me-2"></i> Prizes Galore: Reel in amazing prizes, including <b>100 000 DH</b> plus other gifts. </li>
                         <li><i class="mdi mdi-face-smile text-primary me-2"></i> Fun for All: Whether you're a seasoned angler or a rookie casting your first line, this event is for everyone! Enjoy food trucks, live music, and family-friendly activities.</li>
                       </ul>

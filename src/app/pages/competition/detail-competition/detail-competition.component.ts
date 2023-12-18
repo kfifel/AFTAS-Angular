@@ -44,6 +44,7 @@ export class DetailCompetitionComponent implements OnInit {
   }
   isLoading: boolean = false
   ranks: IRank[] = [];
+  competitionStartDateTime: Date | undefined;
   constructor(private route: ActivatedRoute,
               private competitionService: CompetitionService,
               private fishService: FishService,
@@ -56,6 +57,7 @@ export class DetailCompetitionComponent implements OnInit {
     this.competitionService.findById(id).subscribe(
       (competition: ICompetition) => {
         this.competition = competition;
+        this.competitionStartDateTime = this.combineDateWithTime(this.competition?.date, this.competition?.startTime);
       },
       (error) => {
         this.sweetAlertService.error("Error to get competition", error.error.message)
@@ -68,8 +70,8 @@ export class DetailCompetitionComponent implements OnInit {
 
   combineDateWithTime(date: Date | undefined, time: Time | undefined) {
     if(date == undefined || time == undefined) return undefined;
-    let dateStr = date.toString();
-    let timeStr = time.toString();
+    let dateStr = date.toString(); // => 2021-07-01T00:00:00.000+00:00
+    let timeStr = time.toString(); // => 09:12:00.000+00:00
 
     return new Date(`${dateStr.substring(0, 10)}T${timeStr}`);
   }
@@ -177,7 +179,16 @@ export class DetailCompetitionComponent implements OnInit {
         );
   }
 
-  calculateRanks() {
+  isCompetitionNotStartedYet() {
+    let now = new Date();
+    console.log(this.competitionStartDateTime)
+    return now.getTime() < this.competitionStartDateTime?.getTime();
+  }
+  calculateRanks(){
+    if(this.isCompetitionNotStartedYet()) {
+      this.sweetAlertService.error("Error to calculate ranks", "Competition not started yet");
+      return;
+    }
     this.isLoading = true;
     this.competitionService.calculateRanks(this.competition.code).subscribe({
         next: (res) => {
