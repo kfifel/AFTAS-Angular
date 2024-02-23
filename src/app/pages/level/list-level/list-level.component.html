@@ -34,7 +34,7 @@
               <tr *ngFor="let level of levels">
                 <th scope="row">LEVEL: {{ level.code }}</th>
                 <th>{{ level.point }}</th>
-                <td>{{ level.description.substring(0, 100) }}</td>=
+                <td>{{ level.description?.substring(0, 100) }}</td>=
               </tr>
               </tbody>
             </table>

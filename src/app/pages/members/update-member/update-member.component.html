@@ -42,7 +42,6 @@
                 </div>
 
                 <div class="row">
-
                   <div class="col-lg-6">
                     <div class="mb-3">
                       <label for="identityDocumentTypes">Identity Document Types</label>
@@ -59,9 +58,22 @@
                       <input type="text"  [(ngModel)] = "member.identityNumber" name="startTime" class="form-control" id="identityNumber">
                     </div>
                   </div>
-
                 </div>
 
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label for="email">Email</label>
+                      <input [(ngModel)] = "member.email"  name="email" class="form-control" id="email" />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label for="password">Password</label>
+                      <input type="text"  [(ngModel)] = "member.password" name="startTime" class="form-control" id="password">
+                    </div>
+                  </div>
+                </div>
 
 
                 <div>

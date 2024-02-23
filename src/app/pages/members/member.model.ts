@@ -8,6 +8,8 @@ export interface IMember {
   identityDocumentType?: IdentityDocumentType;
   identityNumber?: string;
   nbrHunting?: number;
+  email?: string;
+  password?: string;
 }
 
 export class Member implements IMember {
@@ -20,6 +22,8 @@ export class Member implements IMember {
     public identityDocumentType?: IdentityDocumentType,
     public identityNumber?: string,
     public nbrHunting?: number,
+    public email?: string,
+    public password?: string
   ) {
   }
 }

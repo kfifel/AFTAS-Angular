@@ -13,7 +13,7 @@ import {SearchWithPagination} from "../../../core/request/request.model";
 export class CompetitionListComponent implements OnInit {
   competitions: ICompetition[];
   breadCrumbItems: Array<{}> =  [{ label: 'Competitions', link: "/competitions" }, { label: 'Overview', active: true }];
-  pagination: PaginationModel = new PaginationModel(0, 10, 0, 0);
+  pagination: PaginationModel = new PaginationModel(0, 5, 0, 0);
   query: string;
   isLoading: boolean = false;
   constructor(private competitionService: CompetitionService) { }

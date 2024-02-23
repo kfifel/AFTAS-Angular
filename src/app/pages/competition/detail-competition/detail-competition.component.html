@@ -284,7 +284,8 @@
           <select [(ngModel)]="fishHunting.fishName" name="fishName" class="form-control" id="fishName" >
             <option value="" selected disabled>Select fish</option>
             <option *ngFor="let fish of fishes" [value]="fish.name">
-              <span class="text-primary">{{fish.name}}</span> <span class="text-muted">average Weight: ({{fish.averageWeight}})</span>
+              <span class="text-primary">{{fish.name}} / </span>
+              <span class="text-muted">average Weight: ({{fish.averageWeight}})</span>
             </option>
           </select>
         </div>

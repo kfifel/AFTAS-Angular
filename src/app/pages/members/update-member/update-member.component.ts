@@ -21,6 +21,8 @@ export class UpdateMemberComponent implements OnInit {
     nationality: null,
     identityDocumentType: null,
     identityNumber: null,
+    email: null,
+    password: null,
   }
   constructor(private memberService: MemberService,
               private router: Router,
