@@ -26,10 +26,15 @@
           </div>
           <!-- Search -->
           <div class="col-sm-12 col-md-6">
-            <div id="tickets-table_filter" class="dataTables_filter text-md-end"><label
-              class="d-inline-flex align-items-center">Search:
-              <input type="text" name="searchTerm" class="form-control form-control-sm ms-2"
-                     aria-controls="tickets-table" [(ngModel)]="query"></label></div>
+            <div id="tickets-table_filter" class="dataTables_filter text-md-end">
+              <label class="d-inline-flex align-items-center">
+                Search:
+                <input type="text" name="searchTerm" class="form-control form-control-sm ms-2"
+                       aria-controls="tickets-table"
+                       (change)="search()"
+                       [(ngModel)]="query">
+              </label>
+            </div>
           </div>
 
           <div class="table-responsive">
@@ -41,19 +46,31 @@
                 <th>Last Name</th>
                 <th>AccessionDate Date</th>
                 <th>Nationality</th>
+                <th>Email</th>
+                <th>Enable</th>
                 <th>Identity Type</th>
                 <th>Identity Number</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let competition of members">
-                <th scope="row">{{ competition.number }}</th>
-                <th>{{ competition.name }}</th>
-                <td>{{ competition.familyName }}</td>
-                <td>{{ competition.accessionDate | date: "dd-MM-yyyy" }}</td>
-                <td>{{ competition.nationality }}</td>
-                <td>{{ competition.identityDocumentType }}</td>
-                <td>{{ competition.identityNumber }}</td>
+              <tr *ngFor="let member of members">
+                <th scope="row">{{ member.number }}</th>
+                <th>{{ member.name }}</th>
+                <td>{{ member.familyName }}</td>
+                <td>{{ member.accessionDate | date: "dd-MM-yyyy" }}</td>
+                <td>{{ member.nationality }}</td>
+                <td>{{ member.email }}</td>
+                <td>
+                  <ui-switch defaultBoColor="#dfdfdf" id="form-hasBalcony-input"
+                             color="#7266ba"
+                             class="ms-1"
+                             name="enable"
+                             [(ngModel)]="member.enabled"
+                             (change)="alert($event, member?.id)"
+                  ></ui-switch>
+                </td>
+                <td>{{ member.identityDocumentType }}</td>
+                <td>{{ member.identityNumber }}</td>
               </tr>
               </tbody>
             </table>

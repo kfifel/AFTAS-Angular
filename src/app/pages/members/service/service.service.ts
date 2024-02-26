@@ -23,4 +23,8 @@ export class MemberService {
   create(member: IMember): Observable<IMember> {
     return this.http.post<IMember>(this.baseUrl, member);
   }
+
+  enableMember(id: number, formData: FormData) {
+    return this.http.patch(`${this.baseUrl}/${id}/enable`, formData);
+  }
 }

@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import { Observable } from 'rxjs';
 import {authUtils} from "../helpers/authUtils";
 import {Role} from "../models/role.enum";
 
@@ -14,11 +13,10 @@ export class JudgeGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree {
-    const hasAuthority = authUtils.hasCurrentUserRole(Role.ROLE_JUDGE)
-
-    if (hasAuthority) return true;
-
-    return this.router.createUrlTree(['/']);
+    return authUtils.hasAnyRole([
+      Role.ROLE_JUDGE,
+      Role.ROLE_MANAGER
+    ]);
   }
 
 }

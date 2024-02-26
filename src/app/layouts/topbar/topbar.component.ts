@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { LanguageService } from '../../core/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
+import {authUtils} from "../../core/helpers/authUtils";
 
 @Component({
   selector: 'app-topbar',
@@ -26,7 +27,7 @@ export class TopbarComponent implements OnInit {
   valueset;
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router, private authService: AuthenticationService,
-              private authFackservice: AuthfakeauthenticationService,
+              private authenticationService: AuthenticationService,
               public languageService: LanguageService,
               public translate: TranslateService,
               public _cookiesService: CookieService) {
@@ -85,12 +86,7 @@ export class TopbarComponent implements OnInit {
    * Logout the user
    */
   logout() {
-    if (environment.defaultauth === 'firebase') {
-      this.authService.logout();
-    } else {
-      this.authFackservice.logout();
-    }
-    this.router.navigate(['/account/login']);
+    this.authenticationService.logout();
   }
 
   /**

@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import { Observable } from 'rxjs';
 import {authUtils} from "../helpers/authUtils";
 import {Role} from "../models/role.enum";
 
@@ -13,12 +12,11 @@ export class MemberGuard implements CanActivate {
   }
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean | UrlTree {
-    const hasAuthority = authUtils.hasCurrentUserRole(Role.ROLE_MEMBER)
+    state: RouterStateSnapshot): boolean {
 
-    if (hasAuthority) return true;
-
-    return this.router.createUrlTree(['/']);
+    return authUtils.hasAnyRole(
+      [Role.ROLE_MEMBER, Role.ROLE_MANAGER, Role.ROLE_JUDGE]
+    );
   }
 
 }

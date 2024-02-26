@@ -81,6 +81,14 @@ class AuthUtils {
       return false;
     return roles.every(role => user.authorities.includes(role));
   }
+
+  hasAnyRole(roles: Role[]): boolean {
+    let user = this.currentUserValue();
+    if(!user)
+      return false;
+    return roles.some(role => user.authorities.includes(role));
+  }
+
   isAuthenticate() {
     return this.getAuthenticatedUser() != null;
   }

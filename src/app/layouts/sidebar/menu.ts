@@ -39,6 +39,13 @@ export const MENU: MenuItem[] = [
 
     },
     {
+        id: 12,
+        label: 'User Management',
+        icon: 'bx-user',
+        link: '/user-management',
+
+    },
+    {
         id: 11,
         label: 'MENUITEMS.LEVEL.TEXT',
         icon: 'bx-sort-up',
@@ -48,7 +55,7 @@ export const MENU: MenuItem[] = [
         id: 11,
         label: 'MENUITEMS.FISH.TEXT',
         icon: 'bx-anchor',
-        link: '/levels'
+        link: '/'
     },
 ];
 

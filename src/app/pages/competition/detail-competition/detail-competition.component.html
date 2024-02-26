@@ -154,7 +154,12 @@
                   <div class="d-flex justify-content-between m-2 ">
                       <h4 class="fw-bold mb-4">Subscriptions({{competition?.members?.length || 0}})</h4>
 
-                      <button class="btn btn-success btn-sm" (click)="openModal(newSubscriptions)">
+                      <button
+                        class="btn btn-success btn-sm"
+                        (click)="openModal(newSubscriptions)"
+                        [disabled] = "!canManageCompetition()"
+                        [class] = "!canManageCompetition() ? 'cursor-not-allowed' : ''"
+                      >
                         <i class="fas fa-plus-circle me-2"></i>
                         new subscription
                       </button>
@@ -166,7 +171,8 @@
                         <th scope="col">FullName</th>
                         <th scope="col">Identity</th>
                         <th scope="col">Number of hunting</th>
-                        <th scope="col">actions</th>
+                        <th scope="col"
+                            *ngIf="canManageCompetition()">actions</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -180,9 +186,13 @@
                           <td>
                             <h5 class="font-size-14 mb-1">{{ member?.nbrHunting }}</h5>
                           </td>
-                          <td>
-                            <button type="button" class="btn btn-primary btn-sm btn-rounded" (click)="openModal(content, member.number)">
-                              Add New Hunting</button>
+                          <td
+                            *ngIf="canManageCompetition()">
+                            <button type="button"
+                                    class="btn btn-primary btn-sm btn-rounded"
+                                    (click)="openModal(content, member.number)">
+                              Add New Hunting
+                            </button>
                           </td>
                         </tr>
                       </tbody>
@@ -198,7 +208,8 @@
             </ng-template>
           </li>
           <li [ngbNavItem]="3">
-            <a ngbNavLink (click)="calculateRanks()">
+            <a ngbNavLink (click)="calculateRanks()"
+               *ngIf="canManageCompetition()">
               <i class="fas fa-medal d-block check-nav-icon mt-4 mb-2"></i>
               <p class="fw-bold mb-4">Ranking</p>
             </a>

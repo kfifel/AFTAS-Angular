@@ -1,5 +1,6 @@
 
 export interface IMember {
+  id?: number;
   number?: number;
   name?: string;
   familyName?: string;
@@ -10,10 +11,12 @@ export interface IMember {
   nbrHunting?: number;
   email?: string;
   password?: string;
+  enabled?: boolean;
 }
 
 export class Member implements IMember {
   constructor(
+    public id?: number,
     public number?: number,
     public name?: string,
     public familyName?: string,
@@ -23,7 +26,8 @@ export class Member implements IMember {
     public identityNumber?: string,
     public nbrHunting?: number,
     public email?: string,
-    public password?: string
+    public password?: string,
+    public enabled?: boolean
   ) {
   }
 }

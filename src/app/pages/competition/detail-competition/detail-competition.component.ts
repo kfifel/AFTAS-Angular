@@ -10,6 +10,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {IFish} from "../../fish/fish.model";
 import {FishService} from "../../fish/service/service.service";
 import {MemberService} from "../../members/service/service.service";
+import {authUtils} from "../../../core/helpers/authUtils";
+import {Role} from "../../../core/models/role.enum";
 
 @Component({
   selector: 'app-detail-competition',
@@ -210,5 +212,9 @@ export class DetailCompetitionComponent implements OnInit {
     let end = endTime.toString().split(':');
     let duration = Number(end[0]) - Number(start[0]);
     return `${duration}`;
+  }
+
+  canManageCompetition(): boolean {
+    return authUtils.hasAnyRole([Role.ROLE_JUDGE]);
   }
 }

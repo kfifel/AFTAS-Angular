@@ -75,7 +75,7 @@ export class AuthenticationService {
   logout() {
     // logout the user
     authUtils.logout();
-    this.router.navigate(['/account/auth/login']);
+    this.router.navigate(['/account/login']);
   }
 }
 

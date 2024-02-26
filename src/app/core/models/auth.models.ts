@@ -8,5 +8,6 @@ export class User {
     email: string;
     createdAt: string;
     verifiedAt: string;
+    enabled: boolean;
     authorities: Role[];
 }

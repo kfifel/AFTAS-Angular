@@ -28,7 +28,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 
 @NgModule({
   declarations: [
-  
+
     FishListComponent
   ],
   imports: [

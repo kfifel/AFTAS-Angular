@@ -61,8 +61,11 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(this.addToken(req));
       }),
       catchError((err) => {
-        this.authenticationService.logout();
+        if (err.status === 401) {
+          this.authenticationService.logout();
+        }
         return throwError(err);
+
       }),
       finalize(() => {
         this.isRefreshingToken = false;

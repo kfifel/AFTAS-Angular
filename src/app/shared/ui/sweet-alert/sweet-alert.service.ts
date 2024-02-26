@@ -43,7 +43,7 @@ export class SweetAlertService {
     });
   }
 
-  public confirm(title: string, message: string, callback: any) {
+  public confirm(title: string, message: string, callback: any, cancelCallback?: any) {
     Swal.fire({
       title: title,
       text: message,
@@ -51,10 +51,14 @@ export class SweetAlertService {
       showCancelButton: true,
       confirmButtonColor: '#34c38f',
       cancelButtonColor: '#f46a6a',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes'
     }).then(result => {
       if (result.value) {
         callback();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        if (cancelCallback) {
+          cancelCallback();
+        }
       }
     });
   }
