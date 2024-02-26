@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DefaultComponent },
   { path: 'dashboards', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule) },
   { path: 'competitions', loadChildren: () => import('./competition/competition.module').then(m => m.CompetitionModule) },
+  { path: 'user-management', loadChildren: () => import('./users-management/users.module').then(m => m.UsersModule) },
   {
     path: 'members',
     canActivate: [ManagerGuard],
